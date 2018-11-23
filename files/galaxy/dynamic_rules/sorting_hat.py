@@ -297,21 +297,7 @@ def gateway(tool_id, user, memory_scale=1.0):
         params=params,
         env=env,
         resubmit=[{
-            'condition': 'any_failure',
-            'destination': 'resubmit_gateway',
+            'condition': 'any_failure and attempt <= 3',
+            'destination': 'gateway',
         }]
     )
-
-
-def resubmit_gateway(tool_id, user):
-    """Gateway to handle jobs which have been resubmitted once.
-
-    We don't want to try re-running them forever so the ONLY DIFFERENCE in
-    these methods is that this one doesn't include a 'resubmission'
-    specification in the returned JobDestination
-    """
-
-    job_destination = gateway(tool_id, user, memory_scale=1.5)
-    job_destination['resubmit'] = []
-    job_destination['id'] = job_destination['id'] + '_resubmit'
-    return job_destination

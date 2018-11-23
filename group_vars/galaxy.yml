@@ -365,13 +365,12 @@ galaxy_config_style: 'ini'
 galaxy_manage_clone: true
 galaxy_manage_static_setup: true
 galaxy_manage_mutable_setup: true
-# TODO: undo this.
-galaxy_manage_database: false
+galaxy_manage_database: true
 galaxy_fetch_dependencies: true
 galaxy_manage_errordocs: false
 
 galaxy_repo: 'https://github.com/usegalaxy-eu/galaxy.git'
-galaxy_commit_id: '00f136dd39ab9b4d3a69beb979e62c16d4dba7f2' # release_18.05_europe-test'
+galaxy_commit_id: '3096184ff2c617a6b0d323fa46fc54668542dd85' # release_18.05_europe
 galaxy_force_checkout: false # discard any modified files
 galaxy_admin_email_to: 'contact@usegalaxy.eu'
 #galaxy_admin_email_from: 'noreply@usegalaxy.eu'
@@ -692,6 +691,7 @@ base_app_main: &BASE_APP_MAIN
   enable_beta_ts_api_install: 'True'
 
 
+  toolbox_filter_base_modules: 'galaxy.tools.toolbox.filters,galaxy.tools.filters,usegalaxy.jobs.rules'
   #enable_cloud_launch: "True"
   #cloudlaunch_default_ami: ami-a7dbf6ce
   #nginx_x_accel_redirect_base: /_x_accel_redirect
